@@ -30,3 +30,5 @@ jobs:
       START_DATE: ${{ secrets.START_DATE }}
       BIRTHDAY: ${{ secrets.BIRTHDAY }}
       CITY: ${{ secrets.CITY }}
+      GAO_DE_APP: ${{ secrets.GAO_DE_APP }}
+      CITY_CODE: ${{ secrets.CITY_CODE }}
