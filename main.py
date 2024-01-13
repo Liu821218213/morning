@@ -17,12 +17,15 @@ app_secret = os.environ["APP_SECRET"]
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
 
+gaodeappkey = os.environ["GAO_DE_APP_KEY"]
+citycode = os.environ["CITY_CODE"]
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  # url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "https://restapi.amap.com/v3/weather/weatherInfo?key=" + gaodeappkey + "&city=" + citycode + "&extensions=all&output=JSON"
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp'])
+  weather = res['forecasts'][0]['casts'][0]
+  return weather['dayweather'], weather['nighttemp']
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
